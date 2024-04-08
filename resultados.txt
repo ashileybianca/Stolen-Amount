@@ -1,0 +1,23 @@
+casoG50.txt
+Total: 14111
+
+casoG100.txt
+Total: 25411
+
+casoG200.txt
+Total: 73424
+
+casoG500.txt
+Total: 871897
+
+casoG750.txt
+Total: 20481572
+
+casoG1000.txt
+Total: 13680144
+
+casoG1500.txt
+Total: 18727167
+
+casoG2000.txt
+Total: 20748732
