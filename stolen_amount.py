@@ -1,5 +1,4 @@
 from sys import argv, exit
-import time
 
 ''' Algoritmos e Estruturas de Dados II
     - Trabalho I
@@ -146,17 +145,6 @@ except Exception as e:
 
 matrix = build_matrix(text)
 
-listx = []
-for i in range(0, 5):
-    # INICIA CONTAGEM D TEMPO PARA ANÁLISE DE COMPLEXIDADE
-    start = time.time()
-    stolen_amount = calculate_stolen_amount(matrix)
-    end = time.time()
+stolen_amount = calculate_stolen_amount(matrix)
 
-    time_to_execute = end - start
-    listx.append(time_to_execute)
-    print(f"Stolen amount: {stolen_amount}")
-    print(f"Time to execute: {time_to_execute}")
-
-mean = sum(listx) / len(listx)
-print(mean)
+print(f"Stolen amount: {stolen_amount}")
