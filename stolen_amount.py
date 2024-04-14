@@ -1,4 +1,5 @@
-from sys import argv
+from sys import argv, exit
+import time
 
 ''' Algoritmos e Estruturas de Dados II
     - Trabalho I
@@ -9,6 +10,8 @@ def read_text_file(file_path):
     # Lê o arquivo de texto para teste.
     with open(file_path) as file:
         text = file.readlines()
+    
+    text = remove_empty_lines(text) # limpa todos os \n do texto
     return text
 
 def remove_empty_lines(text):
@@ -123,12 +126,37 @@ def calculate_stolen_amount(matrix):
     return stolen_amount
 
 
-file_path = argv[1] 
+try:
+    file_path = argv[1] 
+    text = read_text_file(file_path)
+    if not file_path.lower().endswith('.txt'):
+        raise ValueError("O arquivo fornecido não é um arquivo .txt!")
+except IndexError:
+    print("Você precisa fornecer o caminho de um arquivo!")
+    exit()
+except FileNotFoundError:
+    print("Caminho não encontrado. Verifique o caminho e tente novamente.")
+    exit()
+except ValueError as ve:
+    print(ve)
+    exit()
+except Exception as e:
+    print(f"Erro: {e}")
+    exit()
 
-text = read_text_file(file_path)
-cleaned_text = remove_empty_lines(text)
+matrix = build_matrix(text)
 
-matrix = build_matrix(cleaned_text)
+listx = []
+for i in range(0, 5):
+    # INICIA CONTAGEM D TEMPO PARA ANÁLISE DE COMPLEXIDADE
+    start = time.time()
+    stolen_amount = calculate_stolen_amount(matrix)
+    end = time.time()
 
-stolen_amount = calculate_stolen_amount(matrix)
-print(f"Stolen amount: {stolen_amount}")
+    time_to_execute = end - start
+    listx.append(time_to_execute)
+    print(f"Stolen amount: {stolen_amount}")
+    print(f"Time to execute: {time_to_execute}")
+
+mean = sum(listx) / len(listx)
+print(mean)
